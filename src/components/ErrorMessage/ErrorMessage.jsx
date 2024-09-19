@@ -4,8 +4,8 @@ const ErrorMessage = () => {
   return (
     <div>
       <p>
-        <RiEmotionSadLine />
         Ooops, something went wrong...Please try again later
+        <RiEmotionSadLine />
       </p>
     </div>
   );
