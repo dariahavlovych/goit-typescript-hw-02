@@ -1,6 +1,7 @@
 import Modal from "react-modal";
+import { AiOutlineLike } from "react-icons/ai";
 
-const ImageModal = ({ isModalOpened, closeModal, modalImage }) => {
+const ImageModal = ({ isModalOpened, closeModal, modalData }) => {
   Modal.setAppElement("#root");
   return (
     <div>
@@ -10,7 +11,12 @@ const ImageModal = ({ isModalOpened, closeModal, modalImage }) => {
         preventScroll={true}
         contentLabel="Example Modal"
       >
-        <img src={modalImage} />
+        <img src={modalData.imgForModal} />
+        <p>{modalData.description}</p>
+        <p>Author: {modalData.author}</p>
+        <p>
+          <AiOutlineLike /> {modalData.likes}
+        </p>
       </Modal>
     </div>
   );

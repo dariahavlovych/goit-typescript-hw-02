@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import SearchBar from "./components/SearchBar/SearchBar";
 import { fetchImagesByQuery } from "./services/unsplash-api";
+import toast from "react-hot-toast";
+import SearchBar from "./components/SearchBar/SearchBar";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
-import toast from "react-hot-toast";
 
 // TODO
 // 2. add StyleS
-// 3. add additional info about img???
 // 4. handle last page???
 
 function App() {
@@ -21,7 +20,7 @@ function App() {
   const [isError, setisError] = useState(false);
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [page, setPage] = useState(1);
-  const [modalImage, setModalImage] = useState("");
+  const [modalData, setModalData] = useState({});
 
   useEffect(() => {
     if (!searchQuery) {
@@ -55,9 +54,9 @@ function App() {
     setPage(1);
   };
 
-  const handleModalOpening = (image) => {
+  const handleModalOpening = (modalData) => {
     setIsModalOpened(true);
-    setModalImage(image);
+    setModalData(modalData);
   };
 
   const handleModalClosing = () => {
@@ -77,7 +76,7 @@ function App() {
         <ImageModal
           isModalOpened={isModalOpened}
           closeModal={handleModalClosing}
-          modalImage={modalImage}
+          modalData={modalData}
         />
       )}
     </>

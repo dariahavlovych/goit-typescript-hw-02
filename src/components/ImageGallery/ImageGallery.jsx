@@ -11,6 +11,9 @@ const ImageGallery = ({ photos, onImageClick }) => {
             alt={photo.alt_description}
             onImageClick={onImageClick}
             imgForModal={photo.urls.regular}
+            description={photo.description}
+            author={photo.user.name}
+            likes={photo.likes}
           />
         </li>
       ))}
