@@ -6,12 +6,10 @@ import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
-import Notification from "./components/Notification/Notification";
 import ImageModal from "./components/ImageModal/ImageModal";
+import toast from "react-hot-toast";
 
 // TODO
-// 0. add notification if result is empty
-// 1. add modal window
 // 2. add StyleS
 // 3. add additional info about img???
 // 4. handle last page???
@@ -23,7 +21,6 @@ function App() {
   const [isError, setisError] = useState(false);
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [page, setPage] = useState(1);
-  const [isNotify, setIsNotify] = useState(false);
   const [modalImage, setModalImage] = useState("");
 
   useEffect(() => {
@@ -33,11 +30,10 @@ function App() {
     const getPhotos = async () => {
       try {
         setisError(false);
-        setIsNotify(false);
         setIsLoading(true);
         const data = await fetchImagesByQuery(page, searchQuery);
         if (data.length === 0) {
-          setIsNotify(true);
+          toast("Nothing to show. Please change your search query");
         }
         setPhotos((prev) => [...prev, ...data]);
       } catch {
@@ -77,7 +73,6 @@ function App() {
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
       {photos.length > 0 && <LoadMoreBtn onClick={handleChangePage} />}
-      {isNotify && <Notification />}
       {isModalOpened && (
         <ImageModal
           isModalOpened={isModalOpened}

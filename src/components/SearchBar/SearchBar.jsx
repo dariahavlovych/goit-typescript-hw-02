@@ -1,4 +1,4 @@
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { IoSearchOutline } from "react-icons/io5";
 
 const SearchBar = ({ setSearchQuery }) => {
@@ -6,15 +6,7 @@ const SearchBar = ({ setSearchQuery }) => {
     e.preventDefault();
     const query = e.target.elements.search.value;
     if (!query) {
-      return toast("Please enter your search query", {
-        style: {
-          border: "1px solid #181edb",
-          padding: "16px",
-          color: "#181edb",
-        },
-        duration: 4000,
-        position: "top-right",
-      });
+      return toast("Please enter your search query");
     }
     setSearchQuery(query);
   };
@@ -33,7 +25,6 @@ const SearchBar = ({ setSearchQuery }) => {
           <IoSearchOutline />
         </button>
       </form>
-      <Toaster />
     </header>
   );
 };
