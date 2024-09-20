@@ -11,5 +11,5 @@ export const fetchImagesByQuery = async (page = 1, query = "nature") => {
       page,
     },
   });
-  return data.results;
+  return data;
 };

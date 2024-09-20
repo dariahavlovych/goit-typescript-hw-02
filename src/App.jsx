@@ -11,7 +11,6 @@ import ImageModal from "./components/ImageModal/ImageModal";
 
 // TODO
 // 2. add StyleS
-// 4. handle last page???
 
 function App() {
   const [photos, setPhotos] = useState([]);
@@ -20,6 +19,7 @@ function App() {
   const [isError, setisError] = useState(false);
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const [modalData, setModalData] = useState({});
 
   useEffect(() => {
@@ -31,10 +31,11 @@ function App() {
         setisError(false);
         setIsLoading(true);
         const data = await fetchImagesByQuery(page, searchQuery);
-        if (data.length === 0) {
+        if (data.results.length === 0) {
           toast("Nothing to show. Please change your search query");
         }
-        setPhotos((prev) => [...prev, ...data]);
+        setPhotos((prev) => [...prev, ...data.results]);
+        setTotalPages(data.total_pages);
       } catch {
         setisError(true);
       } finally {
@@ -71,7 +72,7 @@ function App() {
       )}
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
-      {photos.length > 0 && <LoadMoreBtn onClick={handleChangePage} />}
+      {page < totalPages && <LoadMoreBtn onClick={handleChangePage} />}
       {isModalOpened && (
         <ImageModal
           isModalOpened={isModalOpened}
