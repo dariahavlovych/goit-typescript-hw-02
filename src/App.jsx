@@ -47,6 +47,10 @@ function App() {
   };
 
   const handleSetSearchQuery = (query) => {
+    console.log(query);
+    if (query === searchQuery) {
+      return;
+    }
     setSearchQuery(query);
     setPhotos([]);
     setPage(1);
