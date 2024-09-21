@@ -1,4 +1,4 @@
-import React from "react";
+import s from "./ImageCard.module.css";
 
 const ImageCard = ({
   src,
@@ -12,6 +12,7 @@ const ImageCard = ({
   return (
     <div>
       <img
+        className={s.photo}
         src={src}
         alt={alt}
         onClick={() =>

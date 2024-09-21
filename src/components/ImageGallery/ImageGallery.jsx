@@ -1,11 +1,12 @@
 import React from "react";
 import ImageCard from "../ImageCard/ImageCard";
+import s from "./ImageGallery.module.css";
 
 const ImageGallery = ({ photos, onImageClick }) => {
   return (
-    <ul>
+    <ul className={s.gallery}>
       {photos.map((photo) => (
-        <li key={photo.id}>
+        <li className={s.galleryItem} key={photo.id}>
           <ImageCard
             src={photo.urls.small}
             alt={photo.alt_description}

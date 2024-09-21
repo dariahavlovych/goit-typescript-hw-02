@@ -1,0 +1,17 @@
+.gallery {
+  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.galleryItem {
+  flex-basis: calc((100% - 36px) / 4);
+  height: auto;
+  border: 1px solid teal;
+  border-radius: 4px;
+}
+
+.galleryItem:hover {
+  cursor: pointer;
+}

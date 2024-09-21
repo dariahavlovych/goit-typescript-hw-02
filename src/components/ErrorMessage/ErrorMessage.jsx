@@ -1,12 +1,12 @@
 import { RiEmotionSadLine } from "react-icons/ri";
-
+import s from "./ErrorMessage.module.css";
 const ErrorMessage = () => {
   return (
-    <div>
-      <p>
+    <div className={s.errorWrapper}>
+      <p className={s.errorText}>
         Ooops, something went wrong...Please try again later
-        <RiEmotionSadLine />
       </p>
+      <RiEmotionSadLine className={s.icon} />
     </div>
   );
 };

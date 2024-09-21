@@ -9,9 +9,6 @@ import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
 
-// TODO
-// 2. add StyleS
-
 function App() {
   const [photos, setPhotos] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -72,7 +69,9 @@ function App() {
       )}
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
-      {page < totalPages && <LoadMoreBtn onClick={handleChangePage} />}
+      {!!photos.length && page < totalPages && (
+        <LoadMoreBtn onClick={handleChangePage} />
+      )}
       {isModalOpened && (
         <ImageModal
           isModalOpened={isModalOpened}

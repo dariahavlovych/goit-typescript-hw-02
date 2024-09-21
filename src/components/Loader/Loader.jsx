@@ -1,15 +1,15 @@
 import { DNA } from "react-loader-spinner";
-
+import s from "./Loader.module.css";
 const Loader = () => {
   return (
     <div>
       <DNA
         visible={true}
-        height="80"
-        width="80"
+        height="120"
+        width="120"
         ariaLabel="dna-loading"
         wrapperStyle={{}}
-        wrapperClass="dna-wrapper"
+        wrapperClass={s.wrapper}
       />
     </div>
   );
