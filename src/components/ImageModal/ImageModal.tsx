@@ -1,8 +1,19 @@
 import Modal from "react-modal";
 import { AiOutlineLike } from "react-icons/ai";
 import s from "./ImageModal.module.css";
+import { IModal } from "../../types";
 
-const ImageModal = ({ isModalOpened, closeModal, modalData }) => {
+interface IModalProps {
+  isModalOpened: boolean;
+  closeModal: () => void;
+  modalData: IModal;
+}
+
+const ImageModal: React.FC<IModalProps> = ({
+  isModalOpened,
+  closeModal,
+  modalData,
+}) => {
   Modal.setAppElement("#root");
   return (
     <div>
@@ -17,7 +28,7 @@ const ImageModal = ({ isModalOpened, closeModal, modalData }) => {
           },
         }}
       >
-        <img src={modalData.imgForModal} className={s.image} />
+        <img src={modalData.image} className={s.image} />
         <p className={s.description}>{modalData.description}</p>
         <div className={s.info}>
           {" "}

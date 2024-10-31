@@ -8,16 +8,17 @@ import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
+import { IPhoto, IModal } from "./types";
 
 function App() {
-  const [photos, setPhotos] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setisError] = useState(false);
-  const [isModalOpened, setIsModalOpened] = useState(false);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [modalData, setModalData] = useState({});
+  const [photos, setPhotos] = useState<IPhoto[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setisError] = useState<boolean>(false);
+  const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [modalData, setModalData] = useState<IModal>({});
 
   useEffect(() => {
     if (!searchQuery) {
@@ -42,12 +43,11 @@ function App() {
     getPhotos();
   }, [page, searchQuery]);
 
-  const handleChangePage = () => {
+  const handleChangePage = (): void => {
     setPage((prev) => prev + 1);
   };
 
-  const handleSetSearchQuery = (query) => {
-    console.log(query);
+  const handleSetSearchQuery = (query: string): void => {
     if (query === searchQuery) {
       return;
     }
@@ -56,12 +56,12 @@ function App() {
     setPage(1);
   };
 
-  const handleModalOpening = (modalData) => {
+  const handleModalOpening = (modalData: IModal): void => {
     setIsModalOpened(true);
     setModalData(modalData);
   };
 
-  const handleModalClosing = () => {
+  const handleModalClosing = (): void => {
     setIsModalOpened(false);
   };
 
