@@ -10,7 +10,8 @@ interface ISearchBarProps {
 const SearchBar: React.FC<ISearchBarProps> = ({ setSearchQuery }) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const query: string = e.target.elements.search.value;
+    const formData = new FormData(e.currentTarget);
+    const query = formData.get("search") as string;
 
     if (!query) {
       return toast("Please enter your search query");

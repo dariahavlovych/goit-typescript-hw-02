@@ -18,7 +18,7 @@ function App() {
   const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(0);
-  const [modalData, setModalData] = useState<IModal>({});
+  const [modalData, setModalData] = useState<IModal>();
 
   useEffect(() => {
     if (!searchQuery) {
@@ -76,7 +76,7 @@ function App() {
       {!!photos.length && page < totalPages && (
         <LoadMoreBtn onClick={handleChangePage} />
       )}
-      {isModalOpened && (
+      {isModalOpened && modalData && (
         <ImageModal
           isModalOpened={isModalOpened}
           closeModal={handleModalClosing}
